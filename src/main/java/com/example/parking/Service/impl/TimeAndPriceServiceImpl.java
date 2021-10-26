@@ -15,6 +15,7 @@ import java.util.List;
 public class TimeAndPriceServiceImpl implements TimeAndPriceService {
     private final TimeAndPriceRepository timeAndPriceRepository;
     private final TimeAndPriceMapper timeAndPriceMapper;
+
     @Override
     public TimeAndPriceDto create(TimeAndPriceDto timeAndPriceDto) {
         TimeAndPrice timeAndPrice = timeAndPriceMapper.to(timeAndPriceDto);
@@ -38,8 +39,8 @@ public class TimeAndPriceServiceImpl implements TimeAndPriceService {
         TimeAndPrice timeAndPrice = timeAndPriceRepository.findById(id).orElseThrow(() -> new Exception("Запись отсутствует"));
         timeAndPrice.setTimePlace(timeAndPriceDto.getTimePlace());
         timeAndPrice.setPricePlace(timeAndPriceDto.getPricePlace());
-        timeAndPrice.setIdCar(timeAndPriceDto.getIdCar());
-        timeAndPrice.setIdPlace(timeAndPriceDto.getIdPlace());
+        timeAndPrice.setCar(timeAndPriceDto.getCar());
+        timeAndPrice.setPlace(timeAndPriceDto.getPlace());
         timeAndPriceRepository.save(timeAndPrice);
         return timeAndPriceMapper.from(timeAndPrice);
     }

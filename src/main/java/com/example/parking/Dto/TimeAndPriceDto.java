@@ -1,6 +1,8 @@
 package com.example.parking.Dto;
 
 
+import com.example.parking.Entity.Car;
+import com.example.parking.Entity.Place;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
@@ -28,9 +30,8 @@ public class TimeAndPriceDto {
     @Size(max = 64, message = "required.value.error")
     private String pricePlace;
 
-    @Min(value = 0, message = "")
-    private Long idCar;
+    private Car car;
 
-    @Min(value = 0,message = "")
-    private Long idPlace;
+
+    private Place place;
 }

@@ -15,6 +15,7 @@ import java.util.List;
 public class PlaceServiceImpl implements PlaceService {
     private final PlaceMapper placeMapper;
     private final PlaceRepository placeRepository;
+
     @Override
     public PlaceDto create(PlaceDto placeDto) {
         Place place = placeMapper.to(placeDto);

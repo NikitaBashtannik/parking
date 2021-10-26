@@ -7,6 +7,7 @@ import com.example.parking.Repository.CarRepository;
 import com.example.parking.Service.CarService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -15,6 +16,7 @@ import java.util.List;
 public class CarServiceImpl implements CarService {
     private final CarRepository carRepository;
     private final CarMapper carMapper;
+
     @Override
     public CarDto create(CarDto carDto) {
         Car car = carMapper.to(carDto);
@@ -33,6 +35,7 @@ public class CarServiceImpl implements CarService {
         return carMapper.from(car);
     }
 
+    @Transactional
     @Override
     public CarDto update(CarDto carDto, Long id) throws Exception {
         Car car = carRepository.findById(id).orElseThrow(() -> new Exception("Машина отсутствует"));
@@ -42,6 +45,7 @@ public class CarServiceImpl implements CarService {
         return carMapper.from(car);
     }
 
+    @Transactional
     @Override
     public void delete(Long id) throws Exception {
         Car car = carRepository.findById(id).orElseThrow(() -> new Exception("Машина отсутствует"));

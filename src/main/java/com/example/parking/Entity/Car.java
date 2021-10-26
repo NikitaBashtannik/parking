@@ -20,13 +20,10 @@ public class Car {
     @SequenceGenerator(name = "h_sequence", sequenceName = "hibernate_sequence", allocationSize = 1)
     private Long id;
 
-    @Column(name = "nameCar")
     private String nameCar;
 
-    @Column(name = "numberCar")
     private String numberCar;
 
-    @Column(name = "numberPlace")
     private int numberPlace;
 
 }

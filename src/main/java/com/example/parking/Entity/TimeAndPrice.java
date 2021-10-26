@@ -20,15 +20,13 @@ public class TimeAndPrice {
     @SequenceGenerator(name = "h_sequence", sequenceName = "hibernate_sequence", allocationSize = 1)
     private Long id;
 
-    @Column(name = "timePlace")
     private String timePlace;
 
-    @Column(name = "pricePlace")
     private String pricePlace;
 
-    @Column(name = "idCar")
-    private Long idCar;
+    @OneToOne
+    private Car car;
 
-    @Column(name = "idPlace")
-    private Long idPlace;
+    @OneToOne
+    private Place place;
 }
