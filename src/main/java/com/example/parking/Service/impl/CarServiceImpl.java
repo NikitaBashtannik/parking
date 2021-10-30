@@ -2,6 +2,7 @@ package com.example.parking.Service.impl;
 
 import com.example.parking.Dto.CarDto;
 import com.example.parking.Entity.Car;
+import com.example.parking.Exception.ProjectException;
 import com.example.parking.Mapper.CarMapper;
 import com.example.parking.Repository.CarRepository;
 import com.example.parking.Service.CarService;
@@ -30,25 +31,25 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public CarDto read(Long id) throws Exception {
-        Car car = carRepository.findById(id).orElseThrow(() -> new Exception("Машина отсутствует"));
+    public CarDto read(Long id) throws ProjectException {
+        Car car = carRepository.findById(id).orElseThrow(() -> new ProjectException("Машина отсутствует"));
         return carMapper.from(car);
     }
 
     @Transactional
     @Override
-    public CarDto update(CarDto carDto, Long id) throws Exception {
-        Car car = carRepository.findById(id).orElseThrow(() -> new Exception("Машина отсутствует"));
+    public CarDto update(CarDto carDto, Long id) throws ProjectException {
+        Car car = carRepository.findById(id).orElseThrow(() -> new ProjectException("Машина отсутствует"));
         car.setNameCar(carDto.getNameCar());
-        car.setNumberCar(carDto.getNumberCar());
+        car.setNumberCar(car.getNumberCar());
         carRepository.save(car);
         return carMapper.from(car);
     }
 
     @Transactional
     @Override
-    public void delete(Long id) throws Exception {
-        Car car = carRepository.findById(id).orElseThrow(() -> new Exception("Машина отсутствует"));
+    public void delete(Long id) throws ProjectException {
+        Car car = carRepository.findById(id).orElseThrow(() -> new ProjectException("Машина отсутствует"));
         carRepository.delete(car);
     }
 }

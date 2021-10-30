@@ -2,6 +2,7 @@ package com.example.parking.Service.impl;
 
 import com.example.parking.Dto.PlaceDto;
 import com.example.parking.Entity.Place;
+import com.example.parking.Exception.ProjectException;
 import com.example.parking.Mapper.PlaceMapper;
 import com.example.parking.Repository.PlaceRepository;
 import com.example.parking.Service.PlaceService;
@@ -29,14 +30,14 @@ public class PlaceServiceImpl implements PlaceService {
     }
 
     @Override
-    public PlaceDto read(Long id) throws Exception {
-        Place place = placeRepository.findById(id).orElseThrow(() -> new Exception("Место отсутствует"));
+    public PlaceDto read(Long id) throws ProjectException {
+        Place place = placeRepository.findById(id).orElseThrow(() -> new ProjectException("Место отсутствует"));
         return placeMapper.from(place);
     }
 
     @Override
-    public PlaceDto update(PlaceDto placeDto, Long id) throws Exception {
-        Place place = placeRepository.findById(id).orElseThrow(() -> new Exception("Место отсутствует"));
+    public PlaceDto update(PlaceDto placeDto, Long id) throws ProjectException {
+        Place place = placeRepository.findById(id).orElseThrow(() -> new ProjectException("Место отсутствует"));
         place.setNumberPlace(placeDto.getNumberPlace());
         place.setAction(placeDto.getAction());
         placeRepository.save(place);
@@ -44,8 +45,8 @@ public class PlaceServiceImpl implements PlaceService {
     }
 
     @Override
-    public void delete(Long id) throws Exception {
-        Place place = placeRepository.findById(id).orElseThrow(() -> new Exception("Место отсутствует"));
+    public void delete(Long id) throws ProjectException {
+        Place place = placeRepository.findById(id).orElseThrow(() -> new ProjectException("Место отсутствует"));
         placeRepository.delete(place);
     }
 }

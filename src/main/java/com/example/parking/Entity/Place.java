@@ -1,8 +1,10 @@
 package com.example.parking.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -17,7 +19,7 @@ import javax.persistence.*;
 public class Place {
     @Id
     @GeneratedValue(generator = "h_sequence")
-    @SequenceGenerator(name = "h_sequence", sequenceName = "hibernate_sequence", allocationSize = 1)
+    @SequenceGenerator(name = "h_sequence", sequenceName = "hibernate_sequence_place", allocationSize = 1)
     private Long id;
 
     @Column(name = "numberPlace")
@@ -25,4 +27,8 @@ public class Place {
 
     @Column(name = "action")
     private String action;
+
+    @OneToMany(mappedBy = "place")
+    @JsonIgnore
+    List<TimeAndPrice> places;
 }

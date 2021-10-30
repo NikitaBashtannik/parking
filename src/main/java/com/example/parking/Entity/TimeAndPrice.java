@@ -1,5 +1,6 @@
 package com.example.parking.Entity;
 
+
 import lombok.*;
 
 import javax.persistence.*;
@@ -17,16 +18,16 @@ import javax.persistence.*;
 public class TimeAndPrice {
     @Id
     @GeneratedValue(generator = "h_sequence")
-    @SequenceGenerator(name = "h_sequence", sequenceName = "hibernate_sequence", allocationSize = 1)
+    @SequenceGenerator(name = "h_sequence", sequenceName = "hibernate_sequence_timeandprice", allocationSize = 1)
     private Long id;
 
     private String timePlace;
 
     private String pricePlace;
 
-    @OneToOne
+    @ManyToOne
     private Car car;
 
-    @OneToOne
+    @ManyToOne
     private Place place;
 }

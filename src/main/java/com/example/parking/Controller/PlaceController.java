@@ -2,6 +2,7 @@ package com.example.parking.Controller;
 
 import com.example.parking.Dto.PlaceDto;
 import com.example.parking.Entity.Place;
+import com.example.parking.Exception.ProjectException;
 import com.example.parking.Service.PlaceService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -18,7 +19,7 @@ public class PlaceController {
     private final PlaceService placeService;
 
     @GetMapping("/{id}")
-    public PlaceDto read(@PathVariable("id") Long id) throws Exception {
+    public PlaceDto read(@PathVariable("id") Long id) throws ProjectException {
         log.info("Get place by id [{}]", id);
         return placeService.read(id);
     }
@@ -30,13 +31,13 @@ public class PlaceController {
     }
 
     @PutMapping("/{id}")
-    public PlaceDto update(@Valid @RequestBody PlaceDto placeDto, @PathVariable("id") Long id) throws Exception {
+    public PlaceDto update(@Valid @RequestBody PlaceDto placeDto, @PathVariable("id") Long id) throws ProjectException {
         log.info("Update place with request [{}] by id[{}]", placeDto, id);
         return placeService.update(placeDto, id);
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable("id") Long id) throws Exception {
+    public void delete(@PathVariable("id") Long id) throws ProjectException {
         log.info("Delete place by id [{}]", id);
         placeService.delete(id);
     }
