@@ -1,6 +1,7 @@
 package com.example.parking.Mapper;
 
 import com.example.parking.Dto.TimeAndPriceDto;
+import com.example.parking.Entity.Car;
 import com.example.parking.Entity.TimeAndPrice;
 import org.springframework.stereotype.Component;
 
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Component;
 public class TimeAndPriceMapper {
     public TimeAndPrice to(TimeAndPriceDto tap) {
         return TimeAndPrice.builder()
+                .id(tap.getId())
                 .time(tap.getTime())
                 .price(tap.getPrice())
                 .build();

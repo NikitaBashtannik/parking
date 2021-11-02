@@ -15,11 +15,7 @@ import java.util.List;
 @ToString
 
 @Entity
-@Table(name = "car",uniqueConstraints = {
-        @UniqueConstraint(columnNames = "id"),
-        @UniqueConstraint(columnNames = "number")
-}
-)
+@Table(name = "car")
 public class Car {
     @Id
     @GeneratedValue(generator = "h_sequence")
@@ -28,7 +24,6 @@ public class Car {
 
     private String name;
 
-    @Column(name = "number")
     private String number;
 
     @OneToMany(mappedBy = "car", fetch = FetchType.EAGER)

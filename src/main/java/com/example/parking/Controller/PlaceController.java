@@ -44,7 +44,7 @@ public class PlaceController {
     }
 
     @GetMapping("/")
-    public List<Place> readAll(){
+    public List<Place> readAll() {
         log.info("Read all places in database");
         return placeService.readAll();
     }

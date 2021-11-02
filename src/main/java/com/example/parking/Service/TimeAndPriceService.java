@@ -3,6 +3,8 @@ package com.example.parking.Service;
 import com.example.parking.Dto.TimeAndPriceDto;
 import com.example.parking.Entity.TimeAndPrice;
 import com.example.parking.Exception.ParkingException;
+import com.example.parking.Repository.CarRepository;
+import com.example.parking.Repository.PlaceRepository;
 
 import java.util.List;
 

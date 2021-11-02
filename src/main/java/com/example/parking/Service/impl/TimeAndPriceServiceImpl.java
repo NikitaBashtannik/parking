@@ -24,8 +24,7 @@ public class TimeAndPriceServiceImpl implements TimeAndPriceService {
     @Override
     public TimeAndPriceDto create(TimeAndPriceDto timeAndPriceDto) throws ParkingException {
         TimeAndPrice timeAndPrice = timeAndPriceMapper.to(timeAndPriceDto);
-        timeAndPrice.setCar(carRepository.findById(timeAndPriceDto.getIdCar()).orElseThrow(() -> new ParkingException("required.value.error")));
-        timeAndPrice.setPlace(placeRepository.findById(timeAndPriceDto.getIdCar()).orElseThrow(() -> new ParkingException("required.value.error")));
+        setCarAndPlace(timeAndPrice, timeAndPriceDto);
         timeAndPriceRepository.save(timeAndPrice);
         return timeAndPriceMapper.from(timeAndPrice);
     }
@@ -45,8 +44,7 @@ public class TimeAndPriceServiceImpl implements TimeAndPriceService {
         TimeAndPrice timeAndPrice = getById(id);
         timeAndPrice.setTime(timeAndPriceDto.getTime());
         timeAndPrice.setPrice(timeAndPriceDto.getPrice());
-        timeAndPrice.setCar(carRepository.findById(timeAndPriceDto.getIdCar()).orElseThrow(() -> new ParkingException("required.value.error")));
-        timeAndPrice.setPlace(placeRepository.findById(timeAndPriceDto.getIdCar()).orElseThrow(() -> new ParkingException("required.value.error")));
+        setCarAndPlace(timeAndPrice, timeAndPriceDto);
         timeAndPriceRepository.save(timeAndPrice);
         return timeAndPriceMapper.from(timeAndPrice);
     }
@@ -58,5 +56,10 @@ public class TimeAndPriceServiceImpl implements TimeAndPriceService {
 
     public TimeAndPrice getById(Long id) throws ParkingException {
         return timeAndPriceRepository.findById(id).orElseThrow(() -> new ParkingException("required.value.error"));
+    }
+
+    public void setCarAndPlace(TimeAndPrice timeAndPrice, TimeAndPriceDto timeAndPriceDto) throws ParkingException {
+        timeAndPrice.setCar(carRepository.findById(timeAndPriceDto.getIdCar()).orElseThrow(() -> new ParkingException("required.value.error")));
+        timeAndPrice.setPlace(placeRepository.findById(timeAndPriceDto.getIdCar()).orElseThrow(() -> new ParkingException("required.value.error")));
     }
 }

@@ -40,7 +40,7 @@ public class CarServiceImpl implements CarService {
     public CarDto update(CarDto carDto, Long id) throws ParkingException {
         Car car = getById(id);
         car.setName(carDto.getName());
-        car.setNumber(car.getNumber());
+        car.setNumber(carDto.getNumber());
         carRepository.save(car);
         return carMapper.from(car);
     }
