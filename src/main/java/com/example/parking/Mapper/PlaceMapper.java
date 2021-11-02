@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 public class PlaceMapper {
     public Place to(PlaceDto placeDto) {
         return Place.builder()
+                .id(placeDto.getId())
                 .number(placeDto.getNumber())
                 .action(placeDto.getAction())
                 .build();

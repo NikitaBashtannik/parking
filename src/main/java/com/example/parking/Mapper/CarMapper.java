@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 public class CarMapper {
     public Car to(CarDto carDto) {
         return Car.builder()
+                .id(carDto.getId())
                 .name(carDto.getName())
                 .number(carDto.getNumber())
                 .build();
