@@ -2,7 +2,7 @@ package com.example.parking.Service;
 
 import com.example.parking.Dto.CarDto;
 import com.example.parking.Entity.Car;
-import com.example.parking.Exception.ProjectException;
+import com.example.parking.Exception.ParkingException;
 
 import java.util.List;
 
@@ -11,10 +11,10 @@ public interface CarService {
 
     List<Car> readAll();
 
-    CarDto read(Long id) throws ProjectException;
+    CarDto read(Long id) throws ParkingException;
 
-    CarDto update(CarDto carDto, Long id) throws ProjectException;
+    CarDto update(CarDto carDto, Long id) throws ParkingException;
 
-    void delete(Long id) throws ProjectException;
+    void delete(Long id) throws ParkingException;
 
 }

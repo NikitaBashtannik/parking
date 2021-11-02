@@ -2,7 +2,7 @@ package com.example.parking.Service.impl;
 
 import com.example.parking.Dto.TimeAndPriceDto;
 import com.example.parking.Entity.TimeAndPrice;
-import com.example.parking.Exception.ProjectException;
+import com.example.parking.Exception.ParkingException;
 import com.example.parking.Mapper.TimeAndPriceMapper;
 import com.example.parking.Repository.CarRepository;
 import com.example.parking.Repository.PlaceRepository;
@@ -22,10 +22,10 @@ public class TimeAndPriceServiceImpl implements TimeAndPriceService {
     private final PlaceRepository placeRepository;
 
     @Override
-    public TimeAndPriceDto create(TimeAndPriceDto timeAndPriceDto) throws ProjectException {
+    public TimeAndPriceDto create(TimeAndPriceDto timeAndPriceDto) throws ParkingException {
         TimeAndPrice timeAndPrice = timeAndPriceMapper.to(timeAndPriceDto);
-        timeAndPrice.setCar(carRepository.findById(timeAndPriceDto.getIdCar()).orElseThrow(() -> new ProjectException("Машина отсутствует")));
-        timeAndPrice.setPlace(placeRepository.findById(timeAndPriceDto.getIdCar()).orElseThrow(() -> new ProjectException("Место отсутствует")));
+        timeAndPrice.setCar(carRepository.findById(timeAndPriceDto.getIdCar()).orElseThrow(() -> new ParkingException("required.value.error")));
+        timeAndPrice.setPlace(placeRepository.findById(timeAndPriceDto.getIdCar()).orElseThrow(() -> new ParkingException("required.value.error")));
         timeAndPriceRepository.save(timeAndPrice);
         return timeAndPriceMapper.from(timeAndPrice);
     }
@@ -36,25 +36,27 @@ public class TimeAndPriceServiceImpl implements TimeAndPriceService {
     }
 
     @Override
-    public TimeAndPriceDto read(Long id) throws ProjectException {
-        TimeAndPrice timeAndPrice = timeAndPriceRepository.findById(id).orElseThrow(() -> new ProjectException("Запись отсутствует"));
-        return timeAndPriceMapper.from(timeAndPrice);
+    public TimeAndPriceDto read(Long id) throws ParkingException {
+        return timeAndPriceMapper.from(getById(id));
     }
 
     @Override
-    public TimeAndPriceDto update(TimeAndPriceDto timeAndPriceDto, Long id) throws ProjectException {
-        TimeAndPrice timeAndPrice = timeAndPriceRepository.findById(id).orElseThrow(() -> new ProjectException("Запись отсутствует"));
-        timeAndPrice.setTimePlace(timeAndPriceDto.getTimePlace());
-        timeAndPrice.setPricePlace(timeAndPriceDto.getPricePlace());
-        timeAndPrice.setCar(carRepository.findById(timeAndPriceDto.getIdCar()).orElseThrow(() -> new ProjectException("Машина отсутствует")));
-        timeAndPrice.setPlace(placeRepository.findById(timeAndPriceDto.getIdCar()).orElseThrow(() -> new ProjectException("Место отсутствует")));
+    public TimeAndPriceDto update(TimeAndPriceDto timeAndPriceDto, Long id) throws ParkingException {
+        TimeAndPrice timeAndPrice = getById(id);
+        timeAndPrice.setTime(timeAndPriceDto.getTime());
+        timeAndPrice.setPrice(timeAndPriceDto.getPrice());
+        timeAndPrice.setCar(carRepository.findById(timeAndPriceDto.getIdCar()).orElseThrow(() -> new ParkingException("required.value.error")));
+        timeAndPrice.setPlace(placeRepository.findById(timeAndPriceDto.getIdCar()).orElseThrow(() -> new ParkingException("required.value.error")));
         timeAndPriceRepository.save(timeAndPrice);
         return timeAndPriceMapper.from(timeAndPrice);
     }
 
     @Override
-    public void delete(Long id) throws ProjectException {
-        TimeAndPrice timeAndPrice = timeAndPriceRepository.findById(id).orElseThrow(() -> new ProjectException("Запись отсутствует"));
-        timeAndPriceRepository.delete(timeAndPrice);
+    public void delete(Long id) throws ParkingException {
+        timeAndPriceRepository.delete(getById(id));
+    }
+
+    public TimeAndPrice getById(Long id) throws ParkingException {
+        return timeAndPriceRepository.findById(id).orElseThrow(() -> new ParkingException("required.value.error"));
     }
 }

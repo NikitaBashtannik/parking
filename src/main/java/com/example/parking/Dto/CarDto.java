@@ -18,12 +18,12 @@ public class CarDto {
     @Pattern(regexp = "^[А-Яa-zA-Z0-9]*$", message = "required.value.error")
     @NotBlank(message = "required.value.error")
     @Size(max = 64, message = "required.value.error")
-    private String nameCar; 
+    private String name;
 
     @Pattern(regexp = "^[А-Я0-9]*$", message = "required.value.error")
     @NotBlank(message = "required.value.error")
     @Size(max = 64, message = "required.value.error")
-    private String numberCar;
+    private String number;
 
 
 }

@@ -16,12 +16,12 @@ import javax.validation.constraints.Size;
 public class PlaceDto {
     private Long id;
 
-    @Pattern(regexp = "^[a-zA-Zа-яА-Я0-9 -]*$", message = "required.value.error")
+    @Pattern(regexp = "[0-9]*", message = "required.value.error")
     @NotBlank(message = "required.value.error")
     @Size(max = 64, message = "required.value.error")
-    private String numberPlace;
+    private String number;
 
-    @Pattern(regexp = "^[a-zA-Zа-яА-Я0-9 -]*$", message = "required.value.error")
+    @Pattern(regexp = "^[a-zA-Zа-яА-Я]*$", message = "required.value.error")
     @NotBlank(message = "required.value.error")
     @Size(max = 64, message = "required.value.error")
     private String action;

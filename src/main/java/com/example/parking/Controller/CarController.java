@@ -2,9 +2,8 @@ package com.example.parking.Controller;
 
 import com.example.parking.Dto.CarDto;
 import com.example.parking.Entity.Car;
-import com.example.parking.Exception.ProjectException;
+import com.example.parking.Exception.ParkingException;
 import com.example.parking.Service.CarService;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.*;
@@ -17,10 +16,11 @@ import java.util.List;
 @RestController
 @RequestMapping("/cars")
 public class CarController {
+
     private final CarService carService;
 
     @GetMapping("/{id}")
-    public CarDto read(@PathVariable("id") Long id) throws ProjectException {
+    public CarDto read(@PathVariable("id") Long id) throws ParkingException {
         log.info("Get car by id [{}]", id);
         return carService.read(id);
     }
@@ -32,13 +32,13 @@ public class CarController {
     }
 
     @PutMapping("/{id}")
-    public CarDto update(@Valid @RequestBody CarDto carDto, @PathVariable("id") Long id) throws ProjectException {
+    public CarDto update(@Valid @RequestBody CarDto carDto, @PathVariable("id") Long id) throws ParkingException {
         log.info("Update car with request [{}] by id[{}]", carDto, id);
         return carService.update(carDto, id);
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable("id") Long id) throws ProjectException {
+    public void delete(@PathVariable("id") Long id) throws ParkingException {
         log.info("Delete car by id [{}]", id);
         carService.delete(id);
     }

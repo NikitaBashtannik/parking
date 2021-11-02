@@ -22,13 +22,11 @@ public class Place {
     @SequenceGenerator(name = "h_sequence", sequenceName = "hibernate_sequence_place", allocationSize = 1)
     private Long id;
 
-    @Column(name = "numberPlace")
-    private String numberPlace;
+    private String number;
 
-    @Column(name = "action")
     private String action;
 
     @OneToMany(mappedBy = "place")
     @JsonIgnore
-    List<TimeAndPrice> places;
+    List<TimeAndPrice> link;
 }

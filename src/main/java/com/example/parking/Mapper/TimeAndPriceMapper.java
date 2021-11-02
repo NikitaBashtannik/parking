@@ -8,16 +8,16 @@ import org.springframework.stereotype.Component;
 public class TimeAndPriceMapper {
     public TimeAndPrice to(TimeAndPriceDto tap) {
         return TimeAndPrice.builder()
-                .timePlace(tap.getTimePlace())
-                .pricePlace(tap.getPricePlace())
+                .time(tap.getTime())
+                .price(tap.getPrice())
                 .build();
     }
 
     public TimeAndPriceDto from(TimeAndPrice timeAndPrice) {
         return TimeAndPriceDto.builder()
                 .id(timeAndPrice.getId())
-                .timePlace(timeAndPrice.getTimePlace())
-                .pricePlace(timeAndPrice.getPricePlace())
+                .time(timeAndPrice.getTime())
+                .price(timeAndPrice.getPrice())
                 .idCar(timeAndPrice.getCar().getId())
                 .idPlace(timeAndPrice.getPlace().getId())
                 .build();

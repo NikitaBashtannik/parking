@@ -4,21 +4,21 @@ create sequence hibernate_sequence_timeandprice start  1 increment 1;
 
 create table car (
     id          bigint not null,
-    name_car    varchar(255),
-    number_car  varchar(255),
+    name   varchar(255),
+    number  varchar(255),
     primary key (id)
 );
 
 create table place (
     id bigint      not null,
     action         varchar(255),
-    number_place   varchar(255),
+    number   varchar(255),
     primary key (id)
  );
 create table timeandprice (
     id              bigint not null,
-    price_place     varchar(255),
-    time_place      varchar(255),
+    price     varchar(255),
+    time      varchar(255),
     car_id          bigint,
     place_id        bigint,
     primary key (id)

@@ -20,12 +20,12 @@ public class TimeAndPriceDto {
     @Pattern(regexp = "^[0-9-:]*$", message = "required.value.error")
     @NotBlank(message = "required.value.error")
     @Size(max = 64, message = "required.value.error")
-    private String timePlace;
+    private String time;
 
-    @Pattern(regexp = "^[а-яА-ЯA-z0-9]*$", message = "required.value.error")
+    @Pattern(regexp = "[А-Я]\\d{3}[А-Я]{2}\\d{2,3}", message = "required.value.error")
     @NotBlank(message = "required.value.error")
     @Size(max = 64, message = "required.value.error")
-    private String pricePlace;
+    private String price;
 
     private Long idCar;
 

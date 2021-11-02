@@ -15,18 +15,24 @@ import java.util.List;
 @ToString
 
 @Entity
-@Table(name = "car")
+@Table(name = "car",uniqueConstraints = {
+        @UniqueConstraint(columnNames = "id"),
+        @UniqueConstraint(columnNames = "number")
+}
+)
 public class Car {
     @Id
     @GeneratedValue(generator = "h_sequence")
     @SequenceGenerator(name = "h_sequence", sequenceName = "hibernate_sequence_car", allocationSize = 1)
     private Long id;
 
-    private String nameCar;
+    private String name;
 
-    private String numberCar;
+    @Column(name = "number")
+    private String number;
 
     @OneToMany(mappedBy = "car", fetch = FetchType.EAGER)
     @JsonIgnore
-    List<TimeAndPrice> cars;
+    List<TimeAndPrice> link;
+
 }

@@ -21,9 +21,9 @@ public class TimeAndPrice {
     @SequenceGenerator(name = "h_sequence", sequenceName = "hibernate_sequence_timeandprice", allocationSize = 1)
     private Long id;
 
-    private String timePlace;
+    private String time;
 
-    private String pricePlace;
+    private String price;
 
     @ManyToOne
     private Car car;

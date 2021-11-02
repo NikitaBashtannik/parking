@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 public class PlaceMapper {
     public Place to(PlaceDto placeDto) {
         return Place.builder()
-                .numberPlace(placeDto.getNumberPlace())
+                .number(placeDto.getNumber())
                 .action(placeDto.getAction())
                 .build();
     }
@@ -16,7 +16,7 @@ public class PlaceMapper {
     public PlaceDto from(Place place) {
         return PlaceDto.builder()
                 .id(place.getId())
-                .numberPlace(place.getNumberPlace())
+                .number(place.getNumber())
                 .action(place.getAction())
                 .build();
     }
